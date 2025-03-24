@@ -1,0 +1,237 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Kanit', 'Prompt', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    background-color: #f5f5f5;
+    overflow: hidden;
+}
+
+.page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.page-loader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-icon {
+    font-size: 40px;
+    animation: rotate 1.5s infinite linear;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.card-container {
+    position: relative;
+    width: 90%;
+    max-width: 350px;
+    height: 500px;
+    perspective: 1500px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.card-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media only screen and (min-width: 768px) {
+    .card-container {
+        max-width: 450px;
+        height: 600px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .card-container {
+        max-width: 300px;
+        height: 450px;
+    }
+}
+
+.card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    border: #ffffff solid 2px;
+    cursor: pointer;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    overflow: hidden;
+    background-color: white;
+    background-size: cover;
+    background-position: center;
+}
+
+.card-back {
+    background-image: url("./res/yourImage.jpg");
+    transform: rotateY(180deg);
+}
+
+.content-container {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 300px;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.card-container.show .content-container {
+    transform: scale(1);
+    opacity: 1;
+    transition-delay: 0.5s;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.cake {
+    font-size: 60px;
+    margin: 20px 0;
+    animation: bounce 2s infinite;
+}
+
+.recipient-name {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 15px 0;
+    color: #333;
+}
+
+.flip-instruction {
+    position: absolute;
+    bottom: 10px;
+    font-size: 12px;
+    color: rgba(51, 51, 51, 0.7);
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 5px 10px;
+    border-radius: 10px;
+    animation: pulse 2s infinite;
+}
+.music-control {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 8px;
+    border-radius: 50%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.music-control.show {
+    display: flex;
+}
+
+.music-control:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #f2d74e;
+    opacity: 0;
+}
+
+.sender-name {
+    font-style: italic;
+    margin-top: 10px;
+    font-weight: bold;
+}
